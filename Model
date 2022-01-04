@@ -2,6 +2,7 @@ from sympy.interactive import printing
 printing.init_printing(use_latex=True)
 from sympy import *
 from sympy.solvers.ode.systems import canonical_odes, linear_ode_to_matrix
+import matplotlib.pyplot as plt
 
 x, y, z = symbols('x y z', cls=Function)
 t, k0, k1, k2, k3, k4, d = symbols("t k0 k1 k2 k3 k4 d")
@@ -45,8 +46,8 @@ for i in range(n):
   eqs_num[i] = Eq(funcs[i].diff(t), RHS[i].subs(model_vars_num))
 soln_num = dsolve(eqs_num, funcs, ics=ics); print_eqs(soln_num)
 
-import matplotlib.pyplot as plt
 
+#plot the solution
 p = plot(soln[0].rhs, show=False, axis_center=(0, 30), 
             xlim=[0, 10], ylim=[30, 70], size=(15, 12),
             title='Temperature vs Time', xlabel='Time, $t$',
